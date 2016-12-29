@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">ham radio</string>
     <string name="title_activity_questionaire">questionaire</string>
-    <string name="button">Button</string>
-    <string name="button2">Button</string>
-    <string name="button1">Button</string>
+    <string name="button">Another Placeholder</string>
+    <string name="button2">PlaceHolder</string>
+    <string name="button1">Technician Level Exam</string>
     <string name="welcometext">Welcome to the IARC app.</string>
+    <string name="dummy_question">lorem ipsum</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="placeholder1">lorem ipsum</string>
+    <string name="placeholder2">ipsum lorem</string>
+    <string name="placeholder3">foobar</string>
+    <string name="placeholder4">great scott</string>
 </resources>

@@ -53,7 +53,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false" />
         </TableRow>
 
         <TableRow
@@ -72,7 +73,8 @@
                 android:layout_below="@+id/button"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:textAllCaps="false" />
         </TableRow>
 
         <TableRow
@@ -91,7 +93,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false" />
         </TableRow>
 
     </TableLayout>
