@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ham radio</string>
+    <string name="title_activity_questionaire">questionaire</string>
+    <string name="button">Button</string>
+    <string name="button2">Button</string>
+    <string name="button1">Button</string>
+    <string name="welcometext">Welcome to the IARC app.</string>
+</resources>
