@@ -21,11 +21,18 @@ public class MainMenu extends AppCompatActivity {
     public void startBasicExam(View view){
         Intent i = new Intent(this, questionaire.class);
         Exam exam= new Exam("BasicExam",NUM_OF_QUESTIONS_BASIC);
+        // TODO : this is not the most pleasant view to pass intent. but this will do, pig.
+        i.putExtra("number_of_questions",NUM_OF_QUESTIONS_BASIC);
         for (int n = 0; n <= NUM_OF_QUESTIONS_BASIC; n++) {
-            Log.d("ids", String.valueOf(n)+":"+String.valueOf(exam.question_ids.get(n)));
-            Log.d("questions",exam.questionPool.get(n).Question);
+            i.putExtra("question_" + String.valueOf(n) + "id_in_sql", String.valueOf(exam.question_ids.get(n)));
+            i.putExtra("question_" + String.valueOf(n), exam.questionPool.get(n).Question);
+            i.putExtra("question_" + String.valueOf(n) + "Question", exam.questionPool.get(n).Question);
+            i.putExtra("question_" + String.valueOf(n) + "Answer1", exam.questionPool.get(n).Answer1);
+            i.putExtra("question_" + String.valueOf(n) + "Answer2", exam.questionPool.get(n).Answer2);
+            i.putExtra("question_" + String.valueOf(n) + "Answer3", exam.questionPool.get(n).Answer3);
+            i.putExtra("question_" + String.valueOf(n) + "Answer4", exam.questionPool.get(n).Answer4);
+            i.putExtra("question_" + String.valueOf(n) + "Correct_Answer", exam.questionPool.get(n).CorrectAnswer);
         }
-        //i.putExtra("questionaire", exam);
         startActivity(i);
     }
 
