@@ -12,4 +12,5 @@
     <string name="placeholder2">ipsum lorem</string>
     <string name="placeholder3">foobar</string>
     <string name="placeholder4">great scott</string>
+    <string name="title_activity_score">scoreActivity</string>
 </resources>

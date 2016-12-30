@@ -1,6 +1,7 @@
 package org.iarc.nick.hamradioiarc;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -9,6 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -29,6 +32,8 @@ public class questionaire extends FragmentActivity {
      * The pager adapter, which provides the pages to the view pager widget.
      */
     private PagerAdapter mPagerAdapter;
+    private int correct = 0;
+    private LinkedList answered_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,10 @@ public class questionaire extends FragmentActivity {
         mPager = (ViewPager) findViewById(R.id.Pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
+        this.answered_list = new LinkedList();
+        for (int i=0; i<=NUM_PAGES; i++){
+            this.answered_list.add(false);
+        }
     }
 
     @Override
@@ -86,6 +95,47 @@ public class questionaire extends FragmentActivity {
         @Override
         public int getCount() {
             return NUM_PAGES;
+        }
+    }
+
+    public void checkAnswer(View view){
+        Button button_pressed = (Button) view;
+        Intent intent = getIntent();
+        String correctAnswer = intent.getStringExtra(
+                "question_" + String.valueOf(mPager.getCurrentItem()) + "Correct_Answer");
+        if (button_pressed.getText().toString().equals(correctAnswer)){
+            button_pressed.setBackgroundColor(Color.GREEN);
+
+            if (checkifAnswered(mPager.getCurrentItem())){
+            }
+            else
+            {
+                this.correct++;
+            }
+            if (mPager.getCurrentItem()< NUM_PAGES-1) {
+                mPager.setCurrentItem(mPager.getCurrentItem() + 1);
+            }
+            else {
+                // retun to score activity. Pass the correct and number of questions in intent.
+                Intent i = new Intent(this, scoreActivity.class);
+                i.putExtra("correct_answers", this.correct);
+                i.putExtra("numberQ", this.NUM_PAGES);
+                startActivity(i);
+            }
+        }
+        else {
+            button_pressed.setBackgroundColor(Color.RED);
+            checkifAnswered(mPager.getCurrentItem());
+        }
+    }
+
+    public boolean checkifAnswered(Integer id){
+        if ((boolean)this.answered_list.get(id)){
+            return true;
+        }
+        else {
+            this.answered_list.set(id, true);
+            return false;
         }
     }
 }

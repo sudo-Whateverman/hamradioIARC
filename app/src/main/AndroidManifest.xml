@@ -18,6 +18,10 @@
         <activity
             android:name=".questionaire"
             android:label="@string/title_activity_questionaire"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".scoreActivity"
+            android:label="@string/title_activity_score"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

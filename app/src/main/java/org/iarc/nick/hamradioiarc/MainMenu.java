@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 public class MainMenu extends AppCompatActivity {
 
-    private static final Integer NUM_OF_QUESTIONS_BASIC = 19; // actual number of pages - 1
+    private static final Integer NUM_OF_QUESTIONS_BASIC = 3; // actual number of pages - 1
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
