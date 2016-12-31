@@ -1,7 +1,6 @@
 package org.iarc.nick.hamradioiarc;
 
-import android.content.Intent;
-import android.graphics.Color;
+
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,9 +19,6 @@ public class question extends Fragment {
     private final String Answer2;
     private final String Answer3;
     private final String Answer4;
-    private final String correct_answer;
-    private boolean answered;
-    private boolean correctly;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,16 +38,13 @@ public class question extends Fragment {
         return rootView;
     }
 
-    public question(String Question,List<String> answer_list,String correct_answer, Integer id){
+    public question(String Question, List<String> answer_list){
         this.Question = Question;
         Collections.shuffle(answer_list);
         this.Answer1 = answer_list.get(0);
         this.Answer2 = answer_list.get(1);
         this.Answer3 = answer_list.get(2);
         this.Answer4 = answer_list.get(3);
-        this.correct_answer = correct_answer;
-        this.answered = false;
-        this.correctly = false;
 
     }
 

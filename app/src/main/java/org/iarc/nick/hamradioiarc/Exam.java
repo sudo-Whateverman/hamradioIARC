@@ -3,6 +3,7 @@ package org.iarc.nick.hamradioiarc;
 import android.util.Range;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,11 +17,9 @@ public class Exam implements Serializable {
     private final String Exam_Level;
     private final Integer Items;
     public final List<examquestions> questionPool;
-    private static final int NUM_PAGES = 20;
     public final List<Integer> question_ids;
 
     public Exam(String exam_level, Integer num_questions){
-
         this.Exam_Level = exam_level;
         this.Items = num_questions;
         this.question_ids = getrandom_ids(get_exam_questions_total(this.Exam_Level),num_questions);
@@ -28,11 +27,11 @@ public class Exam implements Serializable {
     }
 
     public Integer get_exam_questions_total(String exam_level){
-        return 100;
+        return 3;
     }
 
     public List<Integer> getrandom_ids(Integer numberofquestions,Integer num_questions){
-        List<Integer> range = new LinkedList<Integer>();
+        List<Integer> range= new ArrayList<>();
         for (int i = 0; i <= numberofquestions; i++) {
             range.add(i);
         }

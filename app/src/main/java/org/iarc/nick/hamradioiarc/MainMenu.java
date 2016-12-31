@@ -24,7 +24,7 @@ public class MainMenu extends AppCompatActivity {
         // TODO : this is not the most pleasant view to pass intent. but this will do, pig.
         i.putExtra("number_of_questions",NUM_OF_QUESTIONS_BASIC);
         for (int n = 0; n <= NUM_OF_QUESTIONS_BASIC; n++) {
-            i.putExtra("question_" + String.valueOf(n) + "id_in_sql", String.valueOf(exam.question_ids.get(n)));
+            i.putExtra("question_" + String.valueOf(n) + "id_in_sql", exam.question_ids.get(n));
             i.putExtra("question_" + String.valueOf(n), exam.questionPool.get(n).Question);
             i.putExtra("question_" + String.valueOf(n) + "Question", exam.questionPool.get(n).Question);
             i.putExtra("question_" + String.valueOf(n) + "Answer1", exam.questionPool.get(n).Answer1);

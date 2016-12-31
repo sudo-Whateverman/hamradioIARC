@@ -13,4 +13,7 @@
     <string name="placeholder3">foobar</string>
     <string name="placeholder4">great scott</string>
     <string name="title_activity_score">scoreActivity</string>
+    <string name="ham_radio">Ham Radio</string>
+    <string name="textview">TextView</string>
+    <string name="return_to_menu">Return to Menu</string>
 </resources>

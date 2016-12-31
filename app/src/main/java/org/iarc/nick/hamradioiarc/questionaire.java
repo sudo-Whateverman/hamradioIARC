@@ -89,7 +89,7 @@ public class questionaire extends FragmentActivity {
             answer_list.add(Answer2);
             answer_list.add(Answer3);
             answer_list.add(Answer4);
-            return new question(Question, answer_list, correctAnswer, id);
+            return new question(Question, answer_list);
         }
 
         @Override
