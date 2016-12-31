@@ -2,7 +2,7 @@
     <string name="app_name">ham radio</string>
     <string name="title_activity_questionaire">questionaire</string>
     <string name="button">Another Placeholder</string>
-    <string name="button2">PlaceHolder</string>
+    <string name="button2">Advanced Level Exam</string>
     <string name="button1">Technician Level Exam</string>
     <string name="welcometext">Welcome to the IARC app.</string>
     <string name="dummy_question">lorem ipsum</string>
