@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -84,12 +85,17 @@ public class questionaire extends FragmentActivity {
             String Answer4 = intent.getStringExtra("question_" + String.valueOf(position) + "Answer4");
             String correctAnswer = intent.getStringExtra("question_" + String.valueOf(position) + "Correct_Answer");
             Integer id = intent.getIntExtra("question_" + String.valueOf(position) + "id_in_sql",0);
-            List<String> answer_list = new LinkedList<String>();
+            ArrayList<String> answer_list = new ArrayList<>();
             answer_list.add(Answer1);
             answer_list.add(Answer2);
             answer_list.add(Answer3);
             answer_list.add(Answer4);
-            return new question(Question, answer_list);
+            Fragment question_fragment = new question();
+            Bundle bundle = new Bundle();
+            bundle.putString("Question",Question);
+            bundle.putStringArrayList("Answers", (ArrayList<String>) answer_list);
+            question_fragment.setArguments(bundle);
+            return question_fragment;
         }
 
         @Override
