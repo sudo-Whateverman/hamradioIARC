@@ -4,11 +4,11 @@ package org.iarc.nick.hamradioiarc;
  * Created by all on 30.12.2016.
  */
 public class restAPI {
-    private String answer1 = "Its the journey of bullshit";
-    private String answer2 = "private String answer3 is probably right ";
-    private String answer3 = "42";
-    private String answer4 = "I don't know";
-    private String question = "The answer to life universe and everything";
+    private String answer1 = "I am the one asking the questions here!";
+    private String answer2 = "its definitely bigger than 3 and less than 5. pi?!";
+    private String answer3 = "4";
+    private String answer4 = "depends...";
+    private String question = "what is 2+2?";
 
     public restAPI() {
     }
