@@ -48,7 +48,7 @@
                 android:id="@+id/button"
                 style="@style/Widget.AppCompat.Button.Small"
                 android:background="#4DB6AC"
-                android:onClick="startBasicExam"
+                android:onClick="startadvanced"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="20dp"
@@ -74,7 +74,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginBottom="20dp"
                 android:textAllCaps="false"
-                android:onClick="startadvanced" />
+                android:onClick="howTo" />
         </TableRow>
 
         <TableRow
@@ -94,7 +94,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:onClick="launchAbout" />
         </TableRow>
 
     </TableLayout>

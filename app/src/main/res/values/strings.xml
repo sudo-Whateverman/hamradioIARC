@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">ham radio</string>
     <string name="title_activity_questionaire">questionaire</string>
-    <string name="button">Another Placeholder</string>
-    <string name="button2">Advanced Level Exam</string>
+    <string name="button">About</string>
+    <string name="button2">How to add questions</string>
     <string name="button1">Technician Level Exam</string>
     <string name="welcometext">Welcome to the IARC app.</string>
     <string name="dummy_question">lorem ipsum</string>
@@ -16,4 +16,9 @@
     <string name="ham_radio">Ham Radio</string>
     <string name="textview">TextView</string>
     <string name="return_to_menu">Return to Menu</string>
+    <string name="title_activity_aboutactivity">aboutactivity</string>
+    <string name="title_activity_add_question">addQuestion</string>
+    <string name="login_instructions">Go to http://pure-crag-14295.herokuapp.com/admin/login/ in order to login. If you don\'t have a user/pass and wish to help, please contact the developer.</string>
+    <string name="panel_instructions">In the admin panel, click the plus sign next to the Exam qas group</string>
+    <string name="add_instructions">Fill out the fields and click the save button, if you wish to edit a question, you can save it again after changing</string>
 </resources>

@@ -19,6 +19,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -105,7 +106,6 @@ public class MainMenu extends AppCompatActivity {
         /*
         TODO:
         1.populate more questions.
-        2.start randomizing it.
         3.save versioned api result.
         4.fix the little ident in the view.
         5.track progress
@@ -113,17 +113,53 @@ public class MainMenu extends AppCompatActivity {
         7.design some more.
          */
         Intent i = new Intent(this, questionaire.class);
-        i.putExtra("number_of_questions",NUM_OF_QUESTIONS_BASIC);
-        for (int n = 0; n < question_queue.size(); n++) {
-            i.putExtra("question_" + String.valueOf(n) + "id_in_sql", n);
-            Log.e("startAdvanced", String.valueOf(n));
-            i.putExtra("question_" + String.valueOf(n) + "Question",this.question_queue.get(n));
-            i.putExtra("question_" + String.valueOf(n) + "Answer1", this.answered1_queue.get(n));
-            i.putExtra("question_" + String.valueOf(n) + "Answer2", this.answered2_queue.get(n));
-            i.putExtra("question_" + String.valueOf(n) + "Answer3", this.answered3_queue.get(n));
-            i.putExtra("question_" + String.valueOf(n) + "Answer4", this.Correctanswered_queue.get(n));
-            i.putExtra("question_" + String.valueOf(n) + "Correct_Answer", this.Correctanswered_queue.get(n));
+        i.putExtra("number_of_questions", question_queue.size());
+        Log.e("startAdvanced", "there is " + question_queue.size() + " questions!!!!!!");
+        List<Integer> list_of_ids = getrandom_ids(question_queue.size(),
+                questionsToPopulate(question_queue.size()));
+        for (int n = 0; n < list_of_ids.size(); n++) {
+            i.putExtra("question_" + String.valueOf(n) + "id_in_sql", list_of_ids.get(n));
+            Log.e("startAdvanced", String.valueOf(list_of_ids.get(n)));
+            i.putExtra("question_" + String.valueOf(n) + "Question",
+                    this.question_queue.get(list_of_ids.get(n)));
+            i.putExtra("question_" + String.valueOf(n) + "Answer1",
+                    this.answered1_queue.get(list_of_ids.get(n)));
+            i.putExtra("question_" + String.valueOf(n) + "Answer2",
+                    this.answered2_queue.get(list_of_ids.get(n)));
+            i.putExtra("question_" + String.valueOf(n) + "Answer3",
+                    this.answered3_queue.get(list_of_ids.get(n)));
+            i.putExtra("question_" + String.valueOf(n) + "Answer4",
+                    this.Correctanswered_queue.get(list_of_ids.get(n)));
+            i.putExtra("question_" + String.valueOf(n) + "Correct_Answer",
+                    this.Correctanswered_queue.get(list_of_ids.get(n)));
         }
+        startActivity(i);
+    }
+
+    public List<Integer> getrandom_ids(Integer numberofquestions, int sizePopulated){
+        List<Integer> range= new ArrayList<>();
+        for (int i = 0; i < numberofquestions; i++) {
+            range.add(i);
+        }
+        Collections.shuffle(range);
+        return range.subList(0, sizePopulated);
+    }
+
+    private Integer questionsToPopulate(int _size){
+        if (_size < 20){
+            return _size;
+        }
+        else
+            return 20;
+    }
+
+    public void launchAbout(View view){
+        Intent i = new Intent(this, aboutactivity.class);
+        startActivity(i);
+    }
+
+    public void howTo(View view){
+        Intent i = new Intent(this, addQuestion.class);
         startActivity(i);
     }
 
