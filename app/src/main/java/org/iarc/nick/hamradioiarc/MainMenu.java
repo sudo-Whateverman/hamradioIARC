@@ -107,10 +107,8 @@ public class MainMenu extends AppCompatActivity {
         TODO:
         1.populate more questions.
         3.save versioned api result.
-        4.fix the little ident in the view.
         5.track progress
         6.make more api for different exam levels.
-        7.design some more.
          */
         Intent i = new Intent(this, questionaire.class);
         i.putExtra("number_of_questions", question_queue.size());
