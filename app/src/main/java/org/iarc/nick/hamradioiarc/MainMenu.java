@@ -1,6 +1,10 @@
 package org.iarc.nick.hamradioiarc;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +26,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.prefs.Preferences;
+
+import static android.R.attr.key;
 
 public class MainMenu extends AppCompatActivity {
 
@@ -42,7 +49,6 @@ public class MainMenu extends AppCompatActivity {
         this.answered2_queue = new LinkedList<>();
         this.answered3_queue = new LinkedList<>();
         this.Correctanswered_queue = new LinkedList<>();
-
         sendRequest();
     }
 
@@ -54,20 +60,33 @@ public class MainMenu extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             showJSON(response);
+                            SharedPreferences prefs = getSharedPreferences(
+                                    "org.iarc.nick.hamradioiarc", Context.MODE_PRIVATE);
+                            prefs.edit().putString("json", response).commit();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                        Toast.makeText(MainMenu.this,"Loaded questions from server",Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainMenu.this,"Internet connection is not available",Toast.LENGTH_LONG).show();
+                        SharedPreferences prefs = getSharedPreferences(
+                                "org.iarc.nick.hamradioiarc", Context.MODE_PRIVATE);
+                        String response = prefs.getString("json", "");
+                        try {
+                            showJSON(response);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainMenu.this,error.getMessage(),Toast.LENGTH_LONG).show();
-                    }
                 });
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
