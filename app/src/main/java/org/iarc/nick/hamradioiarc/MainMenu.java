@@ -1,10 +1,8 @@
 package org.iarc.nick.hamradioiarc;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,13 +24,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.prefs.Preferences;
 
-import static android.R.attr.key;
 
 public class MainMenu extends AppCompatActivity {
 
-    private static final Integer NUM_OF_QUESTIONS_BASIC = 3; // actual number of pages - 1
     public static final String JSON_URL = "https://pure-crag-14295.herokuapp.com/qs/";
     private List<String> question_queue;
     private List<String> answered1_queue;
@@ -62,12 +57,13 @@ public class MainMenu extends AppCompatActivity {
                             showJSON(response);
                             SharedPreferences prefs = getSharedPreferences(
                                     "org.iarc.nick.hamradioiarc", Context.MODE_PRIVATE);
-                            prefs.edit().putString("json", response).commit();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (UnsupportedEncodingException e) {
-                            e.printStackTrace();
-                        }
+                            prefs.edit().putString("json", response).apply();
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(MainMenu.this, e.toString(),Toast.LENGTH_LONG).show();
+                            }
                         Toast.makeText(MainMenu.this,"Loaded questions from server",Toast.LENGTH_LONG).show();
                     }
                 },
@@ -80,10 +76,11 @@ public class MainMenu extends AppCompatActivity {
                         String response = prefs.getString("json", "");
                         try {
                             showJSON(response);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(MainMenu.this, e.toString(),Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -104,24 +101,8 @@ public class MainMenu extends AppCompatActivity {
         }
     }
 
-    public void startBasicExam(View view){
-        Intent i = new Intent(this, questionaire.class);
-        Exam exam= new Exam("BasicExam",NUM_OF_QUESTIONS_BASIC);
-        // TODO : this is not the most pleasant view to pass intent. but this will do, pig.
-        i.putExtra("number_of_questions",NUM_OF_QUESTIONS_BASIC);
-        for (int n = 0; n <= NUM_OF_QUESTIONS_BASIC; n++) {
-            i.putExtra("question_" + String.valueOf(n) + "id_in_sql", exam.question_ids.get(n));
-            i.putExtra("question_" + String.valueOf(n) + "Question", exam.questionPool.get(n).Question);
-            i.putExtra("question_" + String.valueOf(n) + "Answer1", exam.questionPool.get(n).Answer1);
-            i.putExtra("question_" + String.valueOf(n) + "Answer2", exam.questionPool.get(n).Answer2);
-            i.putExtra("question_" + String.valueOf(n) + "Answer3", exam.questionPool.get(n).Answer3);
-            i.putExtra("question_" + String.valueOf(n) + "Answer4", exam.questionPool.get(n).Answer4);
-            i.putExtra("question_" + String.valueOf(n) + "Correct_Answer", exam.questionPool.get(n).CorrectAnswer);
-        }
-        startActivity(i);
-    }
 
-    public void startadvanced(View view){
+    public void startAdvanced(View view){
         /*
         TODO:
         1.populate more questions.
